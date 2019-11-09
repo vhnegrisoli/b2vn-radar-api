@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "trajetos")
+@Table(name = "trajetos", schema = "radar")
 public class Trajetos {
 
     @Id
@@ -30,11 +31,11 @@ public class Trajetos {
 
     @Column(name = "DATA_INICIO")
     @NotNull
-    private Integer dataInicio;
+    private LocalDateTime dataInicio;
 
     @Column(name = "DATA_FINAL")
     @NotNull
-    private Integer dataFinal;
+    private LocalDateTime dataFinal;
 
     @Column(name = "ORIGEM")
     @NotNull

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -14,34 +13,28 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 @Entity
-@Table(name = "contagens")
+@Table(name = "contagens", schema = "radar")
 public class Contagens {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "DATA_E_HORA")
-    @NotNull
+    @Column(name = "data_e_hora")
     private LocalDateTime dataHora;
 
-    @Column(name = "LOCALIDADE")
-    @NotNull
+    @Column(name = "localidade")
     private Integer localidade;
 
-    @Column(name = "TIPO")
-    @NotNull
+    @Column(name = "tipo")
     private Integer tipo;
 
-    @Column(name = "CONTAGEM")
-    @NotNull
+    @Column(name = "contagem")
     private Integer contagem;
 
     @Column(name = "AUTUACOES")
-    @NotNull
     private Integer autuacoes;
 
     @Column(name = "PLACAS")
-    @NotNull
     private Integer placas;
 }
