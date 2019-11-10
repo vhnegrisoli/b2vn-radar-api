@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.b2vn-radar-api</groupId>
-	<artifactId>b2vn-radar-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>b2vn-radar</artifactId>
+	<version>api</version>
 	<name>b2vn-radar-api</name>
 	<description>Demo project for Spring Boot</description>
 

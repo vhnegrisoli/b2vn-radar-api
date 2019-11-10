@@ -1,15 +1,8 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.controller;
 
-import com.b2vnradarapi.b2vnradarapi.config.exception.ValidacaoException;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.model.Contagens;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.model.Trajetos;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.model.Viagens;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.ContagensRepository;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.TrajetosRepository;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.ViagensRepository;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.service.RadarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +17,6 @@ public class RadarController {
 
     @Autowired
     private RadarService radarService;
-    @Autowired
-    private ContagensRepository contagensRepository;
-    @Autowired
-    private TrajetosRepository trajetosRepository;
-    @Autowired
-    private ViagensRepository viagensRepository;
 
     @GetMapping("{id}")
     public BaseRadares buscarPorId(@PathVariable Integer id) {

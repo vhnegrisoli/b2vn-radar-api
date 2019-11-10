@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public interface ContagensRepositoryCustom {
 
     RadarContagemResponse findFluxoVeiculosByCodigo(Integer codigo);
-    RadarContagemResponse findFluxoVeiculosByCodigoAndDataHora(Integer codigo,
-                                                               LocalDateTime dataHoraInicial,
+
+    RadarContagemResponse findFluxoVeiculosByCodigoAndDataHora(Integer codigo, LocalDateTime dataHoraInicial,
                                                                LocalDateTime dataHoraFinal);
 }
