@@ -4,6 +4,10 @@ Back-end de API de radares do projeto B2VN utilizando Java 11, Spring Boot, Spri
 
 ![radômetro](https://uploaddeimagens.com.br/images/002/496/353/full/radrometro.jpeg?1573404153)
 
+# Projeto de front-end da aplicação no seguinte repositório:
+
+https://github.com/Noninus/b2vn-front
+
 # Build no projeto localmente
 
 mvn clean install
