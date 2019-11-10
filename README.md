@@ -2,7 +2,7 @@
 
 Back-end de API de radares do projeto B2VN utilizando Java 11, Spring Boot, Spring Security, OAuth2.0, Spring Cloud OpenFeign, QueryDSL e PostgreSQL 11.
 
-# Dar build no projeto localmente
+# Build no projeto localmente
 
 mvn clean install
 
