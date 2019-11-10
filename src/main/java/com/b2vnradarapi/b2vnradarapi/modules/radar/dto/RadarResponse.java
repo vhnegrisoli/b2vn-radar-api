@@ -16,15 +16,21 @@ public class RadarResponse {
 
     private static final String ESPACO_EM_BRANCO = " ";
 
+    private Integer id;
     private Double latitude;
     private Double longitude;
+    private String latitudeLongitude;
     private String velocidade;
+    private Integer lote;
 
     public static RadarResponse of(BaseRadares baseRadares) {
         var response = new RadarResponse();
+        response.setId(baseRadares.getId());
         response.setLatitude(getLatitude(baseRadares.getLatitudeL()));
         response.setLongitude(getLongitude(baseRadares.getLatitudeL()));
         response.setVelocidade(baseRadares.getVelocidade());
+        response.setLatitudeLongitude(baseRadares.getLatitudeL());
+        response.setLote(baseRadares.getLote());
         return response;
     }
 

@@ -13,19 +13,56 @@ import java.util.stream.Collectors;
 @Service
 public class RadarService {
 
+    private static final  ValidacaoException RADAR_NAO_ENCONTRADO = new ValidacaoException("");
+
     @Autowired
     private BaseRadaresRepository baseRadaresRepository;
 
-    public BaseRadares buscarPorCodigo(String codigo) {
-        return baseRadaresRepository.findByCodigoIgnoreCaseContaining(codigo)
-            .orElseThrow(() -> new ValidacaoException(""));
+    public BaseRadares buscarPorId(Integer id) {
+        return baseRadaresRepository.findById(id)
+            .orElseThrow(() -> RADAR_NAO_ENCONTRADO);
     }
 
-    public List<RadarResponse> buscarLocalizacao() {
+    public BaseRadares buscarPorCodigo(String codigo) {
+        return baseRadaresRepository.findByCodigoIgnoreCaseContaining(codigo)
+            .orElseThrow(() -> RADAR_NAO_ENCONTRADO);
+    }
+
+    public List<BaseRadares> buscarPorLote(Integer lote) {
+        return baseRadaresRepository.findByLote(lote);
+    }
+
+    public List<Integer> buscarLotes() {
+        return baseRadaresRepository.findLoteDistict();
+    }
+
+    public List<RadarResponse> buscarLocalizacoesMapa() {
         return baseRadaresRepository
             .findAll()
             .stream()
             .map(RadarResponse::of)
             .collect(Collectors.toList());
+    }
+
+    public List<RadarResponse> buscarLocalizacoesMapaComLote(Integer lote) {
+        return baseRadaresRepository
+            .findByLote(lote)
+            .stream()
+            .map(RadarResponse::of)
+            .collect(Collectors.toList());
+    }
+
+    public List<RadarResponse> buscarPorLotes(List<Integer> lotes) {
+        return baseRadaresRepository
+            .findByLoteIn(lotes)
+            .stream()
+            .map(RadarResponse::of)
+            .collect(Collectors.toList());
+    }
+
+    public BaseRadares buscarPorLocalizacao(String latitudeLongitude) {
+        return baseRadaresRepository.findByLatitudeLIgnoreCaseContaining(latitudeLongitude)
+            .orElseThrow(() -> new ValidacaoException("Radar não encontrado para os pontos "
+            + latitudeLongitude));
     }
 }
