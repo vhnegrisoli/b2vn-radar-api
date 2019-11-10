@@ -5,4 +5,6 @@ import java.util.List;
 public interface BaseRadaresRepositoryCustom {
 
     List<Integer> findLoteDistict();
+
+    List<String> findEnquadramentoDistict();
 }

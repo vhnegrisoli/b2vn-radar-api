@@ -64,9 +64,24 @@ public class RadarController {
         return radarService.buscarPorLote(lote);
     }
 
-    @GetMapping("concessoes-selecao")
+    @GetMapping("localizacoes/mapa/concessoes")
     public List<RadarResponse> buscarPorLotes(@RequestParam("lotes") List<Integer> lotes) {
         return radarService.buscarPorLotes(lotes);
+    }
+
+    @GetMapping("enquadramento/{enquadramento}")
+    public List<BaseRadares> buscarPorEnquadramentos(@PathVariable String enquadramento) {
+        return radarService.buscarPorEnquadramento(enquadramento);
+    }
+
+    @GetMapping("enquadramentos")
+    public List<String> buscarEnquadramentos() {
+        return radarService.buscarEnquadramentos();
+    }
+
+    @GetMapping("localizacoes/mapa/enquadramento/{enquadramento}")
+    public List<RadarResponse> buscarLocalizacoesMapaComEnquadramentos(@PathVariable String enquadramento) {
+        return radarService.buscarLocalizacoesMapaComEnquadramentos(enquadramento);
     }
 
     @GetMapping("contagens/{id}")

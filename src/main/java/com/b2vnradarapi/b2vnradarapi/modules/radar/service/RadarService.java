@@ -65,4 +65,19 @@ public class RadarService {
             .orElseThrow(() -> new ValidacaoException("Radar não encontrado para os pontos "
             + latitudeLongitude));
     }
+
+    public List<String> buscarEnquadramentos() {
+        return baseRadaresRepository.findEnquadramentoDistict();
+    }
+
+    public List<BaseRadares> buscarPorEnquadramento(String enquadramento) {
+        return baseRadaresRepository.findByEnquadrame(enquadramento);
+    }
+
+    public List<RadarResponse> buscarLocalizacoesMapaComEnquadramentos(String enquadramento) {
+        return baseRadaresRepository.findByEnquadrame(enquadramento)
+            .stream()
+            .map(RadarResponse::of)
+            .collect(Collectors.toList());
+    }
 }

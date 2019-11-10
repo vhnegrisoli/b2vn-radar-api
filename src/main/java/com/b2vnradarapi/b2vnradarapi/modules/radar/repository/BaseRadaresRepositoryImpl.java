@@ -23,4 +23,14 @@ public class BaseRadaresRepositoryImpl implements BaseRadaresRepositoryCustom {
             .orderBy(baseRadares.lote.asc())
             .fetch();
     }
+
+    @Override
+    public List<String> findEnquadramentoDistict() {
+        return new JPAQuery<Void>(entityManager)
+            .select(baseRadares.enquadrame).distinct()
+            .from(baseRadares)
+            .where(baseRadares.enquadrame.isNotNull())
+            .orderBy(baseRadares.enquadrame.asc())
+            .fetch();
+    }
 }
