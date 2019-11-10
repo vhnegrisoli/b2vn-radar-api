@@ -2,7 +2,7 @@
 
 Back-end de API de radares do projeto B2VN utilizando Java 11, Spring Boot, Spring Security, OAuth2.0, Spring Cloud OpenFeign, QueryDSL e PostgreSQL 11.
 
-![radômetro](https://uploaddeimagens.com.br/imagens/radrometro-jpeg)
+![radômetro](https://uploaddeimagens.com.br/images/002/496/353/full/radrometro.jpeg?1573404153)
 
 # Build no projeto localmente
 
