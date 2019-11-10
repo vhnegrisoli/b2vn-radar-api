@@ -1,6 +1,7 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.controller;
 
 import com.b2vnradarapi.b2vnradarapi.config.exception.ValidacaoException;
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.Contagens;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -84,18 +86,15 @@ public class RadarController {
         return radarService.buscarLocalizacoesMapaComEnquadramentos(enquadramento);
     }
 
-    @GetMapping("contagens/{id}")
-    public Contagens buscarUmaContagem(@PathVariable Integer id) {
-        return contagensRepository.findById(id).orElseThrow(() -> new ValidacaoException("Não encontrado"));
+    @GetMapping("/contagens/fluxo-veiculo/{codigoRadar}")
+    public RadarContagemResponse buscarFluxoVeiculosPorCodigoRadar(@PathVariable Integer codigoRadar) {
+        return radarService.buscarFluxoVeiculos(codigoRadar);
     }
 
-    @GetMapping("trajetos/{id}")
-    public Trajetos buscarUmTrajeto(@PathVariable Integer id) {
-        return trajetosRepository.findById(id).orElseThrow(() -> new ValidacaoException("Não encontrado"));
-    }
-
-    @GetMapping("viagens/{id}")
-    public Viagens buscarUmaViagem(@PathVariable Integer id) {
-        return viagensRepository.findById(id).orElseThrow(() -> new ValidacaoException("Não encontrado"));
+    @GetMapping("/contagens/fluxo-veiculo")
+    public RadarContagemResponse buscarFluxoVeiculosPorCodigoRadar(@PathParam("codigoRadar") Integer codigoRadar,
+                                                                   @PathParam("dataHoraInicial")LocalDateTime dataHoraInicial,
+                                                                   @PathParam("dataHoraFinal")LocalDateTime dataHoraFinal) {
+        return radarService.buscarFluxoVeiculosPorDataHora(codigoRadar, dataHoraInicial, dataHoraFinal);
     }
 }

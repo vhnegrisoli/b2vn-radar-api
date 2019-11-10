@@ -1,12 +1,15 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.service;
 
 import com.b2vnradarapi.b2vnradarapi.config.exception.ValidacaoException;
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.BaseRadaresRepository;
+import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.ContagensRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +20,8 @@ public class RadarService {
 
     @Autowired
     private BaseRadaresRepository baseRadaresRepository;
+    @Autowired
+    private ContagensRepository contagensRepository;
 
     public BaseRadares buscarPorId(Integer id) {
         return baseRadaresRepository.findById(id)
@@ -79,5 +84,22 @@ public class RadarService {
             .stream()
             .map(RadarResponse::of)
             .collect(Collectors.toList());
+    }
+
+    public RadarContagemResponse buscarFluxoVeiculos(Integer codigo) {
+        var radar = buscarPorCodigo(codigo.toString());
+        var response = contagensRepository.findFluxoVeiculosByCodigo(codigo);
+        response.setBaseRadares(radar);
+        return response;
+    }
+
+    public RadarContagemResponse buscarFluxoVeiculosPorDataHora(Integer codigo,
+                                                                LocalDateTime dataHoraInicial,
+                                                                LocalDateTime dataHoraFinal) {
+        var radar = buscarPorCodigo(codigo.toString());
+        var response = contagensRepository
+            .findFluxoVeiculosByCodigoAndDataHora(codigo, dataHoraInicial, dataHoraFinal);
+        response.setBaseRadares(radar);
+        return response;
     }
 }
