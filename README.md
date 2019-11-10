@@ -15,7 +15,7 @@ mvn spring-boot:run
 ou
 
 cd /target
-java -jar b2vn-auth-api.jar
+java -jar b2vn-radar-api.jar
 
 # Criar rede b2vn overlay para aplicação
 docker network create -d overlay --driver=bridge b2vn
