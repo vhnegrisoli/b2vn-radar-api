@@ -1,4 +1,4 @@
-package com.b2vnradarapi.b2vnradarapi.config.auth;
+package com.b2vnradarapi.b2vnradarapi.config;
 
 import org.springframework.stereotype.Component;
 

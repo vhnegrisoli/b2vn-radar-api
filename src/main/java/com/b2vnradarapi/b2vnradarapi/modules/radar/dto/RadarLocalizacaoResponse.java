@@ -12,7 +12,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @NoArgsConstructor
 @Builder
 @Data
-public class RadarResponse {
+public class RadarLocalizacaoResponse {
 
     private static final String ESPACO_EM_BRANCO = " ";
 
@@ -23,8 +23,8 @@ public class RadarResponse {
     private String velocidade;
     private Integer lote;
 
-    public static RadarResponse of(BaseRadares baseRadares) {
-        var response = new RadarResponse();
+    public static RadarLocalizacaoResponse of(BaseRadares baseRadares) {
+        var response = new RadarLocalizacaoResponse();
         response.setId(baseRadares.getId());
         response.setLatitude(getLatitude(baseRadares.getLatitudeL()));
         response.setLongitude(getLongitude(baseRadares.getLatitudeL()));

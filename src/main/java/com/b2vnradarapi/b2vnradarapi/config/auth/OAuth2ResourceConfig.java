@@ -1,5 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.config.auth;
 
+import com.b2vnradarapi.b2vnradarapi.config.CorsConfigFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
