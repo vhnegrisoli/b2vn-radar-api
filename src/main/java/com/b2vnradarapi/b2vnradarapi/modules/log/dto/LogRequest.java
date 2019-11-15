@@ -18,6 +18,8 @@ public class LogRequest {
     private String usuarioEmail;
     private String usuarioPermissao;
     private String usuarioDescricao;
+    private String servicoNome;
+    private String servicoDescricao;
     private String urlAcessada;
     private String metodo;
     private String tipoOperacao;

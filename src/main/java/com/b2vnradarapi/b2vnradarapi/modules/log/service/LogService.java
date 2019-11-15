@@ -21,6 +21,9 @@ import static org.springframework.http.HttpMethod.PUT;
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class LogService {
 
+    private static final String SERVICO_NOME = "B2VN_RADAR_API";
+    private static final String SERVICO_DESCRICAO = "Api de Radares";
+
     @Autowired
     private UsuarioService usuarioService;
 
@@ -37,6 +40,8 @@ public class LogService {
             .usuarioEmail(usuarioLogado.getEmail())
             .usuarioPermissao(usuarioLogado.getPermissao())
             .usuarioDescricao(usuarioLogado.getDescricao())
+            .servicoNome(SERVICO_NOME)
+            .servicoDescricao(SERVICO_DESCRICAO)
             .build());
     }
 
