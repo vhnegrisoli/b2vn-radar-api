@@ -9,6 +9,9 @@ spring:
     continue-on-error: true
     platform: postgresql
 
+  main:
+    allow-bean-definition-overriding: true
+
   jackson:
     time-zone: America/Sao_Paulo
 
