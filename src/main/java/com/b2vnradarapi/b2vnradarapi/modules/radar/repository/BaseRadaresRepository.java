@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface BaseRadaresRepository extends JpaRepository<BaseRadares, Integer>,
     BaseRadaresRepositoryCustom {
 
+    List<BaseRadares> findByIdIn(List<Integer> ids);
+
     Optional<BaseRadares> findByCodigoIgnoreCaseContaining(String codigo);
 
     Optional<BaseRadares> findByLatitudeLIgnoreCaseContaining(String latitudeL);
