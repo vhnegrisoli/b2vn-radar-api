@@ -1,12 +1,12 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.repository;
 
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.Contagens;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface ContagensRepository extends JpaRepository<Contagens, Integer>,
     ContagensRepositoryCustom {
 
-    Page<Contagens> findByTipo(Integer tipo, Pageable pageable);
+    List<Contagens> findByTipo(Integer tipo);
 }
