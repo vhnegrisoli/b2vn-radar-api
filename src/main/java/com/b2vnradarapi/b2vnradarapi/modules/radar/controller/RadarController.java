@@ -1,5 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.controller;
 
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadaresVelocidadeResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposPorRadarResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposRadarTotais;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
@@ -47,5 +48,23 @@ public class RadarController {
     public Page<TiposPorRadarResponse> buscarTotaisTiposPaginado(@PathParam("page") Integer page,
                                                                  @PathParam("size") Integer size) {
         return radarService.buscarTiposPorRadarPaginado(page, size);
+    }
+
+    @GetMapping("velocidades")
+    public List<String> buscarTodasVelocidades(@PathParam("page") Integer page,
+                                               @PathParam("size") Integer size) {
+        return radarService.buscarTodasVelocidades();
+    }
+
+    @GetMapping("velocidades-por-radares")
+    public List<RadaresVelocidadeResponse> buscarTodosRadaresPorVelocidade() {
+        return radarService.buscarTodasVelocidadesPorRadares();
+    }
+
+    @GetMapping("velocidade/{velocidade}")
+    public Page<BaseRadares> buscarRadaresPorVelocidade(@PathVariable Integer velocidade,
+                                                        @PathParam("page") Integer page,
+                                                        @PathParam("size") Integer size) {
+        return radarService.buscarTodosOsRadaresPorVelocidade(velocidade, page, size);
     }
 }

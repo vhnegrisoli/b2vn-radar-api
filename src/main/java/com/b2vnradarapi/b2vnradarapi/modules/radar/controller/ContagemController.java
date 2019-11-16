@@ -1,5 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.controller;
 
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensAcuraciaResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensInfracoesResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.service.ContagemService;
@@ -38,5 +39,16 @@ public class ContagemController {
     @GetMapping("/contagens/infracoes/radar/{codigoRadar}")
     public ContagensInfracoesResponse buscarTodasAsInfracoesPorRadares(@PathVariable Integer codigoRadar) {
         return contagemService.buscarInfracoesPorRadar(codigoRadar);
+    }
+
+    @GetMapping("/contagens/acuracia-totais")
+    public Page<ContagensAcuraciaResponse> buscarTodasAsAcuraciasPorRadares(@PathParam("page") Integer page,
+                                                                            @PathParam("size") Integer size) {
+        return contagemService.buscarAcuraciaPorRadares(page, size);
+    }
+
+    @GetMapping("/contagens/acuracia/radar/{codigoRadar}")
+    public ContagensAcuraciaResponse buscarTodasAsAcuraciasPorRadares(@PathVariable Integer codigoRadar) {
+        return contagemService.buscarAcuarciaPorRadar(codigoRadar);
     }
 }

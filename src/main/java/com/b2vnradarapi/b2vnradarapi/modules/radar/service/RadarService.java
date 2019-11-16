@@ -2,6 +2,7 @@ package com.b2vnradarapi.b2vnradarapi.modules.radar.service;
 
 import com.b2vnradarapi.b2vnradarapi.config.exception.ValidacaoException;
 import com.b2vnradarapi.b2vnradarapi.modules.acidentes.service.TipoVeiculoService;
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadaresVelocidadeResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposPorRadarResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposRadarTotais;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
@@ -67,5 +68,19 @@ public class RadarService {
 
     public List<TiposRadarTotais> buscarTiposTotais() {
         return contagensRepository.findTipos();
+    }
+
+    public List<String> buscarTodasVelocidades() {
+        return baseRadaresRepository.findVelocidadeDistinct();
+    }
+
+    public Page<BaseRadares> buscarTodosOsRadaresPorVelocidade(Integer velocidade, Integer page, Integer size) {
+        var pageRequest = PageRequest.of(page, size);
+        var listaRadares = baseRadaresRepository.findRadaresByVelocidade(velocidade);
+        return new PageImpl<BaseRadares>(listaRadares, pageRequest, listaRadares.size());
+    }
+
+    public List<RadaresVelocidadeResponse> buscarTodasVelocidadesPorRadares() {
+        return  baseRadaresRepository.findTotalRadaresByVelocidade();
     }
 }

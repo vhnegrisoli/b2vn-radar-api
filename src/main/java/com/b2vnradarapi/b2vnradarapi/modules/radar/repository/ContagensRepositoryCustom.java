@@ -1,9 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.repository;
 
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensInfracoesResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposPorRadarResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposRadarTotais;
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,4 +21,8 @@ public interface ContagensRepositoryCustom {
     List<ContagensInfracoesResponse> findAutuacoesRadares();
 
     ContagensInfracoesResponse findAutuacoesPorRadar(Integer codigoRadar);
+
+    ContagensAcuraciaResponse findAcuraciaPorRadar(Integer codigoRadar);
+
+    List<ContagensAcuraciaResponse> findAcuraciaPorRadares();
 }

@@ -1,5 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.service;
 
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensAcuraciaResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensInfracoesResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.ContagensRepository;
@@ -44,5 +45,15 @@ public class ContagemService {
 
     public ContagensInfracoesResponse buscarInfracoesPorRadar(Integer codigoRadar) {
         return contagensRepository.findAutuacoesPorRadar(codigoRadar);
+    }
+
+    public Page<ContagensAcuraciaResponse> buscarAcuraciaPorRadares(Integer page, Integer size) {
+        var pageRequest = PageRequest.of(page, size);
+        var totais = contagensRepository.findAcuraciaPorRadares();
+        return new PageImpl<ContagensAcuraciaResponse>(totais, pageRequest, totais.size());
+    }
+
+    public ContagensAcuraciaResponse buscarAcuarciaPorRadar(Integer codigoRadar) {
+        return contagensRepository.findAcuraciaPorRadar(codigoRadar);
     }
 }

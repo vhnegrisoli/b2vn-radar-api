@@ -1,9 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.repository;
 
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensInfracoesResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposPorRadarResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposRadarTotais;
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.*;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,5 +107,32 @@ public class ContagensRepositoryImpl implements ContagensRepositoryCustom {
             .groupBy(contagens.localidade)
             .orderBy(contagens.localidade.asc())
             .fetchOne();
+    }
+
+    @Override
+    public ContagensAcuraciaResponse findAcuraciaPorRadar(Integer codigoRadar) {
+        return new JPAQuery<Void>(entityManager)
+            .select(Projections.constructor(ContagensAcuraciaResponse.class,
+                contagens.localidade,
+                contagens.placas.sum(),
+                contagens.contagem.sum()))
+            .from(contagens)
+            .where(contagens.localidade.like("%" + codigoRadar + "%"))
+            .groupBy(contagens.localidade)
+            .orderBy(contagens.localidade.asc())
+            .fetchOne();
+    }
+
+    @Override
+    public List<ContagensAcuraciaResponse> findAcuraciaPorRadares() {
+        return new JPAQuery<Void>(entityManager)
+            .select(Projections.constructor(ContagensAcuraciaResponse.class,
+                contagens.localidade,
+                contagens.placas.sum(),
+                contagens.contagem.sum()))
+            .from(contagens)
+            .groupBy(contagens.localidade)
+            .orderBy(contagens.localidade.asc())
+            .fetch();
     }
 }
