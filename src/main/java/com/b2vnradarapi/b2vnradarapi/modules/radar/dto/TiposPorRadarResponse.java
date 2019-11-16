@@ -1,6 +1,5 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.dto;
 
-import com.b2vnradarapi.b2vnradarapi.modules.radar.model.Contagens;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

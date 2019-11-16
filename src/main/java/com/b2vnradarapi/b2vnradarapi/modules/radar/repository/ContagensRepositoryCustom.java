@@ -1,5 +1,6 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.repository;
 
+import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.ContagensInfracoesResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarContagemResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposPorRadarResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.TiposRadarTotais;
@@ -19,4 +20,8 @@ public interface ContagensRepositoryCustom {
     List<TiposPorRadarResponse> findTiposPorRadares();
 
     List<TiposRadarTotais> findTipos();
+
+    List<ContagensInfracoesResponse> findAutuacoesRadares();
+
+    ContagensInfracoesResponse findAutuacoesPorRadar(Integer codigoRadar);
 }
