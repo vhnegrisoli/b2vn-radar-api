@@ -4,13 +4,10 @@ import com.b2vnradarapi.b2vnradarapi.config.exception.ValidacaoException;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.dto.RadarLocalizacaoResponse;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.BaseRadaresRepository;
-import com.b2vnradarapi.b2vnradarapi.modules.trajetos.dto.TrajetoDistanciaResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.trajetos.dto.TrajetosResponse;
-import com.b2vnradarapi.b2vnradarapi.modules.trajetos.dto.TrajetosVelocidadesMediasResponse;
+import com.b2vnradarapi.b2vnradarapi.modules.trajetos.dto.*;
 import com.b2vnradarapi.b2vnradarapi.modules.trajetos.repository.TrajetosRepository;
 import com.b2vnradarapi.b2vnradarapi.modules.trajetos.utils.TrajetoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -26,7 +23,7 @@ public class TrajetoService {
     @Autowired
     private BaseRadaresRepository baseRadaresRepository;
 
-    public Page<TrajetosResponse> buscarTodosOsTrajetos(Integer page, Integer size) {
+    public TrajetosPageResponse buscarTodosOsTrajetos(Integer page, Integer size) {
         var pageRequest = PageRequest.of(page, size);
         var trajetosPaginados = trajetosRepository.findAll(pageRequest);
         var response = new ArrayList<TrajetosResponse>();
@@ -36,10 +33,11 @@ public class TrajetoService {
                     buscarRadar(item.getOrigem().toString()),
                     buscarRadar(item.getDestino().toString())));
         });
-        return new PageImpl<>(response, pageRequest, response.size());
+        return new TrajetosPageResponse(trajetosPaginados.getTotalElements(),
+            new PageImpl<>(response, pageRequest, response.size()));
     }
 
-    public Page<TrajetosVelocidadesMediasResponse> buscarVelocidadesMediasDosTrajetos(Integer page, Integer size) {
+    public TrajetosVelocidadePageResponse buscarVelocidadesMediasDosTrajetos(Integer page, Integer size) {
         var pageRequest = PageRequest.of(page, size);
         var trajetosPaginados = trajetosRepository.findAll(pageRequest);
         var response = new ArrayList<TrajetosVelocidadesMediasResponse>();
@@ -49,7 +47,8 @@ public class TrajetoService {
                     buscarRadar(item.getOrigem().toString()),
                     buscarRadar(item.getDestino().toString()))));
         });
-        return new PageImpl<TrajetosVelocidadesMediasResponse>(response, pageRequest, response.size());
+        return new TrajetosVelocidadePageResponse(trajetosPaginados.getTotalElements(),
+            new PageImpl<>(response, pageRequest, response.size()));
     }
 
     private Optional<BaseRadares> buscarRadar(String codigoRadar) {
