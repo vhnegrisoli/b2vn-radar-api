@@ -1,4 +1,4 @@
-package com.b2vnradarapi.b2vnradarapi.modules.radar.model;
+package com.b2vnradarapi.b2vnradarapi.modules.trajetos.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

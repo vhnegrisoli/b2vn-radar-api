@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static com.b2vnradarapi.b2vnradarapi.modules.log.enums.ETipoOperacao.ALTERANDO;
 import static com.b2vnradarapi.b2vnradarapi.modules.log.enums.ETipoOperacao.REMOVENDO;
@@ -17,6 +16,7 @@ import static com.b2vnradarapi.b2vnradarapi.modules.log.enums.ETipoOperacao.CONS
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
 @SuppressWarnings("PMD.TooManyStaticImports")
@@ -24,13 +24,12 @@ public class LogService {
 
     private static final String SERVICO_NOME = "B2VN_RADAR_API";
     private static final String SERVICO_DESCRICAO = "Api de Radares";
-    private static final List<String> URLS_SEM_LOG = List.of("/api/log", "/teste", "/api/usuarios/novo");
 
     @Autowired
     private UsuarioService usuarioService;
 
     public void gerarLogUsuario(HttpServletRequest request) throws IOException {
-        if (!URLS_SEM_LOG.contains(request.getRequestURI()) && !hasSwaggerUrl(request.getRequestURI())) {
+        if (isAuthenticated(request)) {
             var usuarioLogado = usuarioService.getUsuarioAutenticado();
             usuarioService.enviarLogUsuario(LogRequest
                 .builder()
@@ -49,8 +48,8 @@ public class LogService {
         }
     }
 
-    private boolean hasSwaggerUrl(String url) {
-        return url.contains("swagger") || url.contains("error");
+    private boolean isAuthenticated(HttpServletRequest request) {
+        return !isEmpty(request.getUserPrincipal());
     }
 
     private String definirTipoAcesso(String metodo) {
