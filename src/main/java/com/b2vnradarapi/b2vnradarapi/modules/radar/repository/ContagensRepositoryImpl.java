@@ -72,19 +72,6 @@ public class ContagensRepositoryImpl implements ContagensRepositoryCustom {
     }
 
     @Override
-    public List<TiposPorRadarResponse> findTiposPorRadares() {
-        return new JPAQuery<Void>(entityManager)
-            .select(Projections.constructor(TiposPorRadarResponse.class,
-                contagens.localidade,
-                contagens.tipo,
-                contagens.tipo.count()))
-            .from(contagens)
-            .groupBy(contagens.localidade, contagens.tipo)
-            .orderBy(contagens.localidade.asc())
-            .fetch();
-    }
-
-    @Override
     public List<ContagensInfracoesResponse> findAutuacoesRadares() {
         return new JPAQuery<Void>(entityManager)
             .select(Projections.constructor(ContagensInfracoesResponse.class,

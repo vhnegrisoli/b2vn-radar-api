@@ -31,8 +31,10 @@ public class RadarController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public List<BaseRadares> buscarRadarPorTipo(@PathVariable ETipoVeiculo tipo) {
-        return radarService.buscarPorTipos(tipo);
+    public Page<BaseRadares> buscarRadarPorTipo(@PathVariable ETipoVeiculo tipo,
+                                                @PathParam("page") Integer page,
+                                                @PathParam("size") Integer size) {
+        return radarService.buscarPorTipos(tipo, page, size);
     }
 
     @GetMapping("{codigoRadar}/tipo")
@@ -46,8 +48,8 @@ public class RadarController {
     }
 
     @GetMapping("tipo/totais/page")
-    public Page<TiposPorRadarResponse> buscarTotaisTiposPaginado(@PathParam("page") Integer page,
-                                                                 @PathParam("size") Integer size) {
+    public Page<Object> buscarTotaisTiposPaginado(@PathParam("page") Integer page,
+                                                  @PathParam("size") Integer size) {
         return radarService.buscarTiposPorRadarPaginado(page, size);
     }
 

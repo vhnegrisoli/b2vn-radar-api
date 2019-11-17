@@ -14,8 +14,6 @@ public interface ContagensRepositoryCustom {
 
     List<TiposPorRadarResponse> findTiposPorRadar(Integer localidade);
 
-    List<TiposPorRadarResponse> findTiposPorRadares();
-
     List<TiposRadarTotais> findTipos();
 
     List<ContagensInfracoesResponse> findAutuacoesRadares();

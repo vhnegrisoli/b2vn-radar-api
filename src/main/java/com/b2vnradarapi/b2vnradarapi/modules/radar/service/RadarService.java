@@ -11,7 +11,6 @@ import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.BaseRadaresReposit
 import com.b2vnradarapi.b2vnradarapi.modules.radar.repository.ContagensRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +46,7 @@ public class RadarService {
             .orElseThrow(() -> RADAR_NAO_ENCONTRADO);
     }
 
-    public List<BaseRadares> buscarPorTipos(ETipoVeiculo tipoVeiculo) {
+    public Page<BaseRadares> buscarPorTipos(ETipoVeiculo tipoVeiculo, Integer page, Integer size) {
         var tiposEncontrados = contagensRepository.findByTipo(getTipoVeiculo(tipoVeiculo));
         var codigos = tiposEncontrados
             .stream()
@@ -55,7 +54,7 @@ public class RadarService {
             .collect(Collectors.toList());
         var lista = new HashSet<String>();
         codigos.forEach(item -> lista.add(item.toString()));
-        return baseRadaresRepository.findByCodigoIn(lista);
+        return baseRadaresRepository.findByCodigoIn(lista, PageRequest.of(page, size));
     }
 
     private Integer getTipoVeiculo(ETipoVeiculo tipoVeiculo) {
@@ -72,12 +71,9 @@ public class RadarService {
         return contagensRepository.findTiposPorRadar(codigoRadar);
     }
 
-    public Page<TiposPorRadarResponse> buscarTiposPorRadarPaginado(Integer page, Integer size) {
+    public Page<Object> buscarTiposPorRadarPaginado(Integer page, Integer size) {
         var pageRequest = PageRequest.of(page, size);
-        var totais = contagensRepository.findTiposPorRadares();
-        Page<TiposPorRadarResponse> tiposPaginados =
-            new PageImpl<TiposPorRadarResponse>(totais, pageRequest, totais.size());
-        return tiposPaginados;
+        return contagensRepository.findTiposPorRadaresGroupBy(pageRequest);
     }
 
     public List<TiposRadarTotais> buscarTiposTotais() {
@@ -90,8 +86,8 @@ public class RadarService {
 
     public Page<BaseRadares> buscarTodosOsRadaresPorVelocidade(Integer velocidade, Integer page, Integer size) {
         var pageRequest = PageRequest.of(page, size);
-        var listaRadares = baseRadaresRepository.findRadaresByVelocidade(velocidade);
-        return new PageImpl<BaseRadares>(listaRadares, pageRequest, listaRadares.size());
+        return baseRadaresRepository.findByVelocidadeContainingIgnoreCaseOrderByVelocidadeAsc(velocidade.toString(),
+            pageRequest);
     }
 
     public List<RadaresVelocidadeResponse> buscarTodasVelocidadesPorRadares() {

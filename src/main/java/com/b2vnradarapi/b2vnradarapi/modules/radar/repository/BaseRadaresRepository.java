@@ -1,6 +1,8 @@
 package com.b2vnradarapi.b2vnradarapi.modules.radar.repository;
 
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.Set;
 public interface BaseRadaresRepository extends JpaRepository<BaseRadares, Integer>,
     BaseRadaresRepositoryCustom {
 
-    List<BaseRadares> findByCodigoIn(Set<String> ids);
+    Page<BaseRadares> findByCodigoIn(Set<String> ids, Pageable pageable);
 
     Optional<BaseRadares> findByCodigoIgnoreCaseContaining(String codigo);
 
@@ -21,4 +23,6 @@ public interface BaseRadaresRepository extends JpaRepository<BaseRadares, Intege
     List<BaseRadares> findByLoteIn(List<Integer> lotes);
 
     List<BaseRadares> findByEnquadrame(String enquadramento);
+
+    Page<BaseRadares> findByVelocidadeContainingIgnoreCaseOrderByVelocidadeAsc(String velocidade, Pageable pageable);
 }

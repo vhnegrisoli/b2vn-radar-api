@@ -32,7 +32,7 @@ public class TrajetosVelocidadesMediasResponse {
         this.radarOrigem = response.getTrajetoCompleto().getOrigem().toString();
         this.radarDestino = response.getTrajetoCompleto().getDestino().toString();
         this.enderecoOrigem = isEmpty(response.getRadarOrigem()) ? null : response.getRadarOrigem().getEndereco();
-        this.enderecoDestino = isEmpty(response.getRadarOrigem()) ? null : response.getRadarDestino().getEndereco();
+        this.enderecoDestino = isEmpty(response.getRadarDestino()) ? null : response.getRadarDestino().getEndereco();
         this.velocidadeOrigem = response.getTrajetoCompleto().getV0();
         this.velocidadeDestino = response.getTrajetoCompleto().getV1();
         this.velocidadeMedia = this.velocidadeOrigem == 0 && this.velocidadeDestino == 0 ? new BigDecimal(0.0) :
