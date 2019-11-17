@@ -71,7 +71,7 @@ public class RadarService {
         return contagensRepository.findTiposPorRadar(codigoRadar);
     }
 
-    public Page<Object> buscarTiposPorRadarPaginado(Integer page, Integer size) {
+    public Page<TiposPorRadarResponse> buscarTiposPorRadarPaginado(Integer page, Integer size) {
         var pageRequest = PageRequest.of(page, size);
         return contagensRepository.findTiposPorRadaresGroupBy(pageRequest);
     }

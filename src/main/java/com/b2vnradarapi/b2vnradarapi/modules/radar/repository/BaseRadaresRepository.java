@@ -20,6 +20,8 @@ public interface BaseRadaresRepository extends JpaRepository<BaseRadares, Intege
 
     List<BaseRadares> findByLote(Integer lote);
 
+    Page<BaseRadares> findByLote(Integer lote, Pageable pageable);
+
     List<BaseRadares> findByLoteIn(List<Integer> lotes);
 
     List<BaseRadares> findByEnquadrame(String enquadramento);

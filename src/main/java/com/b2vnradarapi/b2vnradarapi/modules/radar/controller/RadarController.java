@@ -48,7 +48,7 @@ public class RadarController {
     }
 
     @GetMapping("tipo/totais/page")
-    public Page<Object> buscarTotaisTiposPaginado(@PathParam("page") Integer page,
+    public Page<TiposPorRadarResponse> buscarTotaisTiposPaginado(@PathParam("page") Integer page,
                                                   @PathParam("size") Integer size) {
         return radarService.buscarTiposPorRadarPaginado(page, size);
     }

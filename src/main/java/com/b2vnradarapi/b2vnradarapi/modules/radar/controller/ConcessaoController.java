@@ -3,9 +3,11 @@ package com.b2vnradarapi.b2vnradarapi.modules.radar.controller;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.service.ConcessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RadaresBaseUrl
@@ -20,8 +22,9 @@ public class ConcessaoController {
     }
 
     @GetMapping("concessoes/{lote}")
-    public List<BaseRadares> buscarPorLote(@PathVariable Integer lote) {
-        return concessaoService.buscarPorLote(lote);
+    public Page<BaseRadares> buscarPorLote(@PathVariable Integer lote,
+                                           @PathParam("page") Integer page,
+                                           @PathParam("size") Integer size) {
+        return concessaoService.buscarPorLote(lote, page, size);
     }
-
 }
