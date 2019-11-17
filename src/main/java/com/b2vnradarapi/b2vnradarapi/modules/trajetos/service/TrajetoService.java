@@ -36,7 +36,7 @@ public class TrajetoService {
                     buscarRadar(item.getOrigem().toString()),
                     buscarRadar(item.getDestino().toString())));
         });
-        return new PageImpl<TrajetosResponse>(response, pageRequest, response.size());
+        return new PageImpl<>(response, pageRequest, response.size());
     }
 
     public Page<TrajetosVelocidadesMediasResponse> buscarVelocidadesMediasDosTrajetos(Integer page, Integer size) {

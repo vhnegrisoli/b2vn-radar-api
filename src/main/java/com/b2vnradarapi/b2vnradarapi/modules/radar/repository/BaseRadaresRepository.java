@@ -26,5 +26,7 @@ public interface BaseRadaresRepository extends JpaRepository<BaseRadares, Intege
 
     List<BaseRadares> findByEnquadrame(String enquadramento);
 
+    Page<BaseRadares> findByEnquadrame(String enquadramento, Pageable pageable);
+
     Page<BaseRadares> findByVelocidadeContainingIgnoreCaseOrderByVelocidadeAsc(String velocidade, Pageable pageable);
 }
