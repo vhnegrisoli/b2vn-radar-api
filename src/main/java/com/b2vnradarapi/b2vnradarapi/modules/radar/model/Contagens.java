@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "contagens", schema = "radar")
+@XmlRootElement
 public class Contagens {
 
     @Id

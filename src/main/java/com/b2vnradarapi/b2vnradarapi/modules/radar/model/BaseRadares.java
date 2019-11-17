@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "base_radares")
+@XmlRootElement
 public class BaseRadares {
 
     @Id

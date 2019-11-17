@@ -14,64 +14,67 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
+
 @RadaresBaseUrl
 public class RadarController {
 
     @Autowired
     private RadarService radarService;
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{id}", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public BaseRadares buscarPorId(@PathVariable Integer id) {
         return radarService.buscarPorId(id);
     }
 
-    @GetMapping
+    @GetMapping(produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public BaseRadares buscarUmRadar(@PathParam("codigo") String codigo) {
         return radarService.buscarPorCodigo(codigo);
     }
 
-    @GetMapping("/tipo/{tipo}")
+    @GetMapping(value = "/tipo/{tipo}", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public Page<BaseRadares> buscarRadarPorTipo(@PathVariable ETipoVeiculo tipo,
                                                 @PathParam("page") Integer page,
                                                 @PathParam("size") Integer size) {
         return radarService.buscarPorTipos(tipo, page, size);
     }
 
-    @GetMapping("{codigoRadar}/tipo")
+    @GetMapping(value = "{codigoRadar}/tipo", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public List<TiposPorRadarResponse> buscarTipos(@PathVariable Integer codigoRadar) {
         return radarService.buscarTiposPorRadar(codigoRadar);
     }
 
-    @GetMapping("tipo/totais")
+    @GetMapping(value = "tipo/totais", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public List<TiposRadarTotais> buscarTotaisTipos() {
         return radarService.buscarTiposTotais();
     }
 
-    @GetMapping("tipo/totais/page")
+    @GetMapping(value = "tipo/totais/page", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public Page<TiposPorRadarResponse> buscarTotaisTiposPaginado(@PathParam("page") Integer page,
                                                   @PathParam("size") Integer size) {
         return radarService.buscarTiposPorRadarPaginado(page, size);
     }
 
-    @GetMapping("velocidades")
+    @GetMapping(value = "velocidades", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public List<String> buscarTodasVelocidades(@PathParam("page") Integer page,
                                                @PathParam("size") Integer size) {
         return radarService.buscarTodasVelocidades();
     }
 
-    @GetMapping("velocidades-por-radares")
+    @GetMapping(value = "velocidades-por-radares", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public List<RadaresVelocidadeResponse> buscarTodosRadaresPorVelocidade() {
         return radarService.buscarTodasVelocidadesPorRadares();
     }
 
-    @GetMapping("velocidade/{velocidade}")
+    @GetMapping(value = "velocidade/{velocidade}", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public Page<BaseRadares> buscarRadaresPorVelocidade(@PathVariable Integer velocidade,
                                                         @PathParam("page") Integer page,
                                                         @PathParam("size") Integer size) {
         return radarService.buscarTodosOsRadaresPorVelocidade(velocidade, page, size);
     }
 
-    @GetMapping("buscar-todos")
+    @GetMapping(value = "buscar-todos", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public Page<BaseRadares> buscarTodosPaginado(@PathParam("page") Integer page,
                                                  @PathParam("size") Integer size) {
         return radarService.buscarRadaresPaginados(page, size);

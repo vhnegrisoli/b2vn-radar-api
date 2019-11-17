@@ -10,20 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
+
 @RadaresBaseUrl
 public class EnquadramentoController {
 
     @Autowired
     private EnquadramentoService enquadramentoService;
 
-    @GetMapping("enquadramento/{enquadramento}")
+    @GetMapping(value = "enquadramento/{enquadramento}", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public Page<BaseRadares> buscarPorEnquadramentos(@PathVariable String enquadramento,
                                                      @PathParam("page") Integer page,
                                                      @PathParam("size") Integer size) {
         return enquadramentoService.buscarPorEnquadramento(enquadramento, page, size);
     }
 
-    @GetMapping("enquadramentos")
+    @GetMapping(value = "enquadramentos", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
     public List<String> buscarEnquadramentos() {
         return enquadramentoService.buscarEnquadramentos();
     }

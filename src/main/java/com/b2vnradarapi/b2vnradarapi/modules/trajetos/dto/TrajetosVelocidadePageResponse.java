@@ -6,10 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement
 public class TrajetosVelocidadePageResponse {
 
     private Long totalElements;

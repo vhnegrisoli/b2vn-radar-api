@@ -6,12 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
+@XmlRootElement
 public class RadarLocalizacaoResponse {
 
     private static final String ESPACO_EM_BRANCO = " ";
