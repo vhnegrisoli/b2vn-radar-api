@@ -36,6 +36,29 @@ ou
 
 
 
+## Instalação (Docker)
+
+Para começar, como são microsserviços, é necessário ter todos os projetos.
+
+    $ git clone https://github.com/vhnegrisoli/b2vn-auth-api.git
+    $ git clone https://github.com/vhnegrisoli/b2vn-radar-api.git
+    $ git clone https://github.com/Noninus/b2vn-front.git
+
+###  Criar network b2vn
+    $ docker network create b2vn
+
+### Build dos projetos
+    $ docker image build -t b2vn-auth-api .
+    $ docker image build -t b2vn-radar-api .
+    $ docker image build -t b2vn-front .
+
+### Criar o container com o parametro --name para especificar o network
+    $ docker container run --network b2vn --name auth -p 8080:8080 -d b2vn-auth-api
+    $ docker container run --network b2vn --name radar -p 8081:8081 -d b2vn-radar-api
+    $ docker container run --network b2vn --name front -p 3000:80 b2vn-front
+
+
+
 ### Criar base de dados PostgreSQL para B2VN Auth API
 
     $ docker pull postgres
@@ -119,28 +142,6 @@ ou
         START 10038
         CACHE 1
         NO CYCLE;
-    
-
-## Instalação (Docker)
-
-Para começar, como são microsserviços, é necessário ter todos os projetos.
-
-    $ git clone https://github.com/vhnegrisoli/b2vn-auth-api.git
-    $ git clone https://github.com/vhnegrisoli/b2vn-radar-api.git
-    $ git clone https://github.com/Noninus/b2vn-front.git
-
-###  Criar network b2vn
-    $ docker network create b2vn
-
-### Build dos projetos
-    $ docker image build -t b2vn-auth-api .
-    $ docker image build -t b2vn-radar-api .
-    $ docker image build -t b2vn-front .
-
-### Criar o container com o parametro --name para especificar o network
-    $ docker container run --network b2vn --name auth -p 8080:8080 -d b2vn-auth-api
-    $ docker container run --network b2vn --name radar -p 8081:8081 -d b2vn-radar-api
-    $ docker container run --network b2vn --name front -p 3000:80 b2vn-front
 
 
 ## Funcionalidades
