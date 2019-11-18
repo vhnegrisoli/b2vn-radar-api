@@ -56,6 +56,8 @@ ou
     username: postgres
     password: b2vn-auth
 
+### Script de criação da base de dados e inserção dos dados iniciais
+
     CREATE DATABASE b2vn
         WITH 
         OWNER = postgres
@@ -141,7 +143,7 @@ Para começar, como são microsserviços, é necessário ter todos os projetos.
     $ docker container run --network b2vn --name front -p 3000:80 b2vn-front
 
 
-### Funcionalidades
+## Funcionalidades
  - Paginação nas consultas para melhoras a eficiência  
  - Token de segurança (Oauth2)
  - Log para controle de acesso dos usuários
