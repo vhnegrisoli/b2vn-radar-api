@@ -1,9 +1,10 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    jdbc-url: jdbc:postgresql://localhost:5432/hackatona
-    username: postgres
-    password: 1y5h8j
+#    jdbc-url: jdbc:postgresql://localhost:5432/hackatona
+    jdbc-url: jdbc:postgresql://192.168.167.44:5432/hackatona
+    username: mobilab
+    password: mobilab
     initialization-mode: always
     initialize: true
     continue-on-error: true
@@ -34,20 +35,14 @@ app-config:
     b2vn-radar-api:
       client: b2vn-radar-api-client
       secret: b2vn-radar-api-secret
-    b2vn-acidentes-api:
-      client: b2vn-acidentes-api-client
-      secret: b2vn-acidentes-api-secret
 
   services:
     b2vn-auth-api:
-#      url: http://auth:8080
-      url: http://localhost:8080
+      url: http://auth:8080
+#      url: http://localhost:8080
     b2vn-radar-api:
-#      url: http://radar:8081
-      url: http://localhost:8081
-    b2vn-acidentes-api:
-#      url: http://acidentes:8082
-      url: http://localhost:8082
+      url: http://radar:8081
+#      url: http://localhost:8081
 
 security:
   oauth2:
