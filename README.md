@@ -86,8 +86,8 @@ Você poderá executar o seguinte comando após o procedimento de instalação a
 
 ## Instalação (Local)
 
-    $ git clone https://github.com/vhnegrisoli/b2vn-auth-api.git
-    $ cd b2vn-auth-api
+    $ git clone https://github.com/vhnegrisoli/b2vn-radar-api.git
+    $ cd b2vn-radar-api
     
 ### Build no projeto localmente
 
@@ -102,7 +102,7 @@ Na raiz da aplicação:
 ou
 
     $ cd /target
-    $ java -jar b2vn-auth-api.jar
+    $ java -jar b2vn-radar-api.jar
     
 
 ## Instalação (Docker)
