@@ -7,7 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @AllArgsConstructor
@@ -18,8 +21,12 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class RadarLocalizacaoResponse {
 
     private static final String ESPACO_EM_BRANCO = " ";
+    private static final String BARRA = "/";
+    private static final String ESPACO_VAZIO = "";
+    private static final String TRACO = "-";
 
     private Integer id;
+    private List<String> codigosRadares;
     private Double latitude;
     private Double longitude;
     private String latitudeLongitude;
@@ -29,12 +36,24 @@ public class RadarLocalizacaoResponse {
     public static RadarLocalizacaoResponse of(BaseRadares baseRadares) {
         var response = new RadarLocalizacaoResponse();
         response.setId(baseRadares.getId());
+        response.setCodigosRadares(getCodigosRadares(baseRadares.getCodigo()));
         response.setLatitude(getLatitude(baseRadares.getLatitudeL()));
         response.setLongitude(getLongitude(baseRadares.getLatitudeL()));
         response.setVelocidade(baseRadares.getVelocidade());
         response.setLatitudeLongitude(baseRadares.getLatitudeL());
         response.setLote(baseRadares.getLote());
         return response;
+    }
+
+    private static List<String> getCodigosRadares(String codigosRadares) {
+        if (codigosRadares.contains(ESPACO_EM_BRANCO) && codigosRadares.contains(TRACO)) {
+            codigosRadares = codigosRadares.replaceAll(ESPACO_EM_BRANCO, ESPACO_VAZIO);
+            return asList(codigosRadares.split(TRACO));
+        }
+        if (codigosRadares.contains(BARRA)) {
+            return asList(codigosRadares.split(BARRA));
+        }
+        return singletonList(codigosRadares);
     }
 
     private static Double getLatitude(String dados) {
