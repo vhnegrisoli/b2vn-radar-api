@@ -1,10 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-#    jdbc-url: jdbc:postgresql://localhost:5432/hackatona
-    jdbc-url: jdbc:postgresql://sqlvhnegrisoli.ddns.net:5432/hackatona
-    username: postgres
-    password: 1y5h8j
+    jdbc-url: jdbc:postgresql://ec2-107-21-94-185.compute-1.amazonaws.com:5432/d8s7gh8deheskt
+    username: nokwoiayzphkbd
+    password: 8c9addb1f22fa088832974ffd26daa2f58ca1d54d27afae99655ff35f787038d
     initialization-mode: always
     initialize: true
     continue-on-error: true
@@ -38,10 +37,10 @@ app-config:
 
   services:
     b2vn-auth-api:
-      url: http://localhost:8080
+      url: https://b2vn-auth-api.herokuapp.com
 
     b2vn-radar-api:
-      url: http://localhost:8081
+      url: https://b2vn-radar-api.herokuapp.com
 
 security:
   oauth2:
