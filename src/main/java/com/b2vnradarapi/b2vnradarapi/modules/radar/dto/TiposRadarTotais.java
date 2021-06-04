@@ -5,12 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 @Data
 @Builder
 @NoArgsConstructor
-@XmlRootElement
 @AllArgsConstructor
 public class TiposRadarTotais {
 

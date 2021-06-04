@@ -4,29 +4,25 @@ import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
 import com.b2vnradarapi.b2vnradarapi.modules.radar.service.EnquadramentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
-
-@RadaresBaseUrl
+@RestController
+@RequestMapping("/api/radares/enquadramento")
 public class EnquadramentoController {
 
     @Autowired
     private EnquadramentoService enquadramentoService;
 
-    @GetMapping(value = "enquadramento/{enquadramento}", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
+    @GetMapping("{enquadramento}")
     public Page<BaseRadares> buscarPorEnquadramentos(@PathVariable String enquadramento,
-                                                     @PathParam("page") Integer page,
-                                                     @PathParam("size") Integer size) {
+                                                     @RequestParam("page") Integer page,
+                                                     @RequestParam("size") Integer size) {
         return enquadramentoService.buscarPorEnquadramento(enquadramento, page, size);
     }
 
-    @GetMapping(value = "enquadramentos", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
+    @GetMapping
     public List<String> buscarEnquadramentos() {
         return enquadramentoService.buscarEnquadramentos();
     }

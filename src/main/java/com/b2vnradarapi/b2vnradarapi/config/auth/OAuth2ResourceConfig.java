@@ -53,8 +53,9 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
             .authorizeRequests()
             .antMatchers(permitAll).permitAll()
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-            .antMatchers("/teste").hasAnyRole(ADMIN.name(), USER.name())
-            .antMatchers("/api/radares/**").hasAnyRole(ADMIN.name(), USER.name());
+            .antMatchers("/api/radares/**").hasAnyRole(ADMIN.name(), USER.name())
+            .antMatchers("/api/relatorios/**").hasAnyRole(ADMIN.name(), USER.name())
+            .antMatchers("/api/trajetos/**").hasAnyRole(ADMIN.name(), USER.name());
     }
 
     @Override

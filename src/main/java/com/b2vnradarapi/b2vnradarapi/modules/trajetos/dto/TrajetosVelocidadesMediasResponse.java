@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -15,7 +14,6 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement
 @SuppressWarnings("PMD.AvoidDecimalLiteralsInBigDecimalConstructor")
 public class TrajetosVelocidadesMediasResponse {
 

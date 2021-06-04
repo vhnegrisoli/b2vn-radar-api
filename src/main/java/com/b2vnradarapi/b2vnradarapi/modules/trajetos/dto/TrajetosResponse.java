@@ -4,13 +4,10 @@ import com.b2vnradarapi.b2vnradarapi.modules.radar.model.BaseRadares;
 import com.b2vnradarapi.b2vnradarapi.modules.trajetos.model.Trajetos;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Optional;
 
 @Data
 @NoArgsConstructor
-@XmlRootElement
 public class TrajetosResponse {
 
     private Trajetos trajetoCompleto;

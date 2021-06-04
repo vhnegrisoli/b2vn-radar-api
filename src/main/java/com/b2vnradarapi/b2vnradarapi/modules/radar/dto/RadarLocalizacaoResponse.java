@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -17,7 +15,6 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @NoArgsConstructor
 @Builder
 @Data
-@XmlRootElement
 public class RadarLocalizacaoResponse {
 
     private static final String ESPACO_EM_BRANCO = " ";

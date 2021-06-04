@@ -6,11 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 @AllArgsConstructor
 @NoArgsConstructor
-@XmlRootElement
 @Builder
 @Data
 public class RadarContagemResponse {
