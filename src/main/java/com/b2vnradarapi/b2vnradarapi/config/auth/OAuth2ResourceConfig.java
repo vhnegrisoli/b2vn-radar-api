@@ -37,7 +37,12 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
             "/oauth/authorize",
             "/api/usuarios/novo",
             "/api/clientes/endereco/**",
-            "/swagger-ui.html"
+            "/swagger-ui.html",
+            "/swagger-ui.html**",
+            "/swagger-resources/**",
+            "/v2/api-docs**",
+            "/webjars/**",
+            "/api/docs",
         };
 
         http

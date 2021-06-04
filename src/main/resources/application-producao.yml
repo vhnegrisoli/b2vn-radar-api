@@ -27,6 +27,11 @@ spring:
           lob.non_contextual_creation: true
 
 app-config:
+
+  application:
+    url: https://b2vn-radar-api.herokuapp.com
+    swagger-url: ${app-config.application.url}/swagger-ui.html
+
   oauth-clients:
     b2vn-auth-api:
       client: b2vn-auth-api-client
